@@ -1,8 +1,9 @@
 #!/bin/bash
-for file in *.txt; do
-  if [[ $(file -b --mime-type "$file") = "text/plain" ]]; then
-    echo "Файл $file соответствует формату txt"
-  else
-    echo "Файл $file не соответствует формату txt"
-  fi
+
+for file in $(find . -name "*.txt"); do
+    if file "$file" | grep -q "text"; then
+        echo "File $file is a text file"
+    else
+        echo "Error: File $file is not a text file"
+    fi
 done
